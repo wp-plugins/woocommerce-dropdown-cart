@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Dropdown Cart
 Plugin URI: https://www.facebook.com/svincoll4
 Description: A widget plugin for WooCommerce to display the cart at top of page
-Author: Phuc Pham
+Author: svincoll4
 Version: 1.0
 Author URI: https://www.facebook.com/svincoll4
 */

@@ -27,6 +27,9 @@ No questions.
 
 == Screenshots ==
 
+1. In collapsed
+2. In expanded
+
 No any screenshots.
 
 == Changelog ==
