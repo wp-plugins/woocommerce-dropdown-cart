@@ -12,7 +12,7 @@ A widget plugin for WooCommerce to display the cart at top of page
 
 == Description ==
 
-Just place the Widget on your sidebar to display these icons.
+Just place the Widget on your sidebar to display the dropdown cart.
 
 == Installation ==
 
