@@ -34,8 +34,11 @@ No questions.
 
 At version 1.2
 
-1.1 Fixed errors on woocommerce 2.1.5
-1.2 
+= 1.2 =
+* Updated CSS
+
+= 1.1 = 
+* Fixed errors on woocommerce 2.1.5
 
 == Upgrade Notice ==
 
