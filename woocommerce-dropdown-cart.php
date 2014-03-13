@@ -4,7 +4,7 @@ Plugin Name: WooCommerce Dropdown Cart
 Plugin URI: https://www.facebook.com/svincoll4
 Description: A widget plugin for WooCommerce to display the cart at top of page
 Author: svincoll4
-Version: 1.0
+Version: 1.3
 Author URI: https://www.facebook.com/svincoll4
 */
 
@@ -27,7 +27,7 @@ class WooCommerce_Widget_DropdownCart extends WP_Widget {
         $this->woo_widget_cssclass 		= 'widget_shopping_mini_cart dropdown-cart';
         $this->woo_widget_description 	= __( "Display the user's Cart in the sidebar.", 'woocommerce' );
         $this->woo_widget_idbase 		= 'woocommerce_widget_minicart';
-        $this->woo_widget_name 			= __( '(Engager) WooCommerce Dropdown Cart', 'woocommerce' );
+        $this->woo_widget_name 			= __( 'WooCommerce Dropdown Cart', 'woocommerce' );
 
         /* Widget settings. */
         $widget_ops = array( 'classname' => $this->woo_widget_cssclass, 'description' => $this->woo_widget_description );
@@ -137,8 +137,8 @@ function register_script_WooCommerce_Widget_DropdownCart() {
     if(class_exists('Woocommerce')) {
         if( !is_admin() ){
             wp_enqueue_script('jquery');
-            wp_enqueue_script('jquery-dropdown-cart', cgi_get_resource('/inc/widgets/woocommerce-dropdown-cart/js/main.js'), array('jquery'));
-            wp_enqueue_style('jquery-dropdown-cart', cgi_get_resource('/inc/widgets/woocommerce-dropdown-cart/css/style.css'));
+            wp_enqueue_script('jquery-dropdown-cart', plugins_url('woocommerce-dropdown-cart/js/main.js'), array('jquery'));
+            wp_enqueue_style('jquery-dropdown-cart', plugins_url('woocommerce-dropdown-cart/css/style.css'));
         }
     }
 }
