@@ -32,7 +32,7 @@ No questions.
 
 == Changelog ==
 
-At version 1.0
+At version 1.2
 
 1.1 Fixed errors on woocommerce 2.1.5
 1.2 
