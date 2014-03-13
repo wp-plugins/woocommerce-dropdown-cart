@@ -137,8 +137,8 @@ function register_script_WooCommerce_Widget_DropdownCart() {
     if(class_exists('Woocommerce')) {
         if( !is_admin() ){
             wp_enqueue_script('jquery');
-            wp_enqueue_script('jquery-dropdown-cart', cgi_get_resource('/inc/widgets/woocommerce-dropdown-cart/js/main.js'), array('jquery'));
-            wp_enqueue_style('jquery-dropdown-cart', cgi_get_resource('/inc/widgets/woocommerce-dropdown-cart/css/style.css'));
+    wp_enqueue_script('jquery-dropdown-cart', plugins_url('woocommerce-dropdown-cart/js/main.js'), array('jquery'));
+    wp_enqueue_style('jquery-dropdown-cart', plugins_url('woocommerce-dropdown-cart/css/style.css'));
         }
     }
 }
