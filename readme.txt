@@ -32,8 +32,6 @@ No questions.
 
 == Changelog ==
 
-At version 1.2
-
 = 1.2 =
 * Updated CSS
 
