@@ -3,8 +3,8 @@ Contributors: svincoll4
 Donate link: https://www.facebook.com/svincoll4
 Tags: cart, ecommerce, woocommerce, widgets, plugins
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 1.0
+Tested up to: 3.8.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,13 +27,18 @@ No questions.
 
 == Screenshots ==
 
-No any screenshots.
+1. In normal
+2. In expanded
 
 == Changelog ==
 
-At version 1.0
+At version 1.2
 
-1.1 Fixed errors on woocommerce 2.1.5
+= 1.2 =
+* Updated CSS
+
+= 1.1 = 
+* Fixed errors on woocommerce 2.1.5
 
 == Upgrade Notice ==
 
