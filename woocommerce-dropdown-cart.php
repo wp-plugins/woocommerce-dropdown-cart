@@ -4,7 +4,7 @@ Plugin Name: WooCommerce Dropdown Cart
 Plugin URI: https://www.facebook.com/svincoll4
 Description: A widget plugin for WooCommerce to display the cart at top of page
 Author: svincoll4
-Version: 1.3
+Version: 1.4
 Author URI: https://www.facebook.com/svincoll4
 */
 
@@ -64,9 +64,9 @@ class WooCommerce_Widget_DropdownCart extends WP_Widget {
         global $woocommerce;
         ?>
         <div class="widget_shopping_mini_cart_content">
-            <?php if ( sizeof( $woocommerce->cart->get_cart() ) > 0 ) : ?>
-                <div class="dropdown-cart-button <?php echo $hide_if_empty ? 'hide_dropdown_cart_widget_if_empty' : '' ?>" style="<?php echo sizeof( $woocommerce->cart->get_cart() ) == 0 ? "display:none;":"" ?>">
-                    <a href="#" class="dropdown-total"><?php echo sizeof( $woocommerce->cart->get_cart()) ?> items(s) - <?php echo $woocommerce->cart->get_cart_subtotal(); ?></a>
+            <?php if ( !$hide_if_empty || sizeof( $woocommerce->cart->get_cart() ) > 0 ) : ?>
+                <div class="dropdown-cart-button <?php echo $hide_if_empty ? 'hide_dropdown_cart_widget_if_empty' : '' ?>" style="<?php echo $hide_if_empty && sizeof( $woocommerce->cart->get_cart() ) == 0 ? "display:none;":"" ?>">
+                    <a href="#" class="dropdown-total"><?php echo sizeof( $woocommerce->cart->get_cart()) ?> <?php _e('items(s)', 'woocommerce-ddc') ?> - <?php echo $woocommerce->cart->get_cart_subtotal(); ?></a>
                     <div class="dropdown">
                         <?php woocommerce_mini_cart(); ?>
                         <div class="clear"></div>
