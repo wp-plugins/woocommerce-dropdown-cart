@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: WooCommerce Dropdown Cart
-Plugin URI: https://www.facebook.com/svincoll4
+Plugin URI: https://wordpress.org/plugins/woocommerce-dropdown-cart/
 Description: A widget plugin for WooCommerce to display the cart at top of page
 Author: svincoll4
-Version: 1.3.1
+Version: 1.4.1
 Author URI: https://www.facebook.com/svincoll4
 */
 
@@ -47,11 +47,14 @@ class WooCommerce_Widget_DropdownCart extends WP_Widget {
      * @return void
      */
     function widget( $args, $instance ) {
-        global $woocommerce;
+
+        if(empty($instance['show_on_checkout']) && (is_cart() || is_checkout())){
+            return;
+        }
+
+        $woocommerce = WC();
 
         extract( $args );
-
-        if ( is_cart() || is_checkout() ) return;
 
         $title = apply_filters('widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
         $hide_if_empty = empty( $instance['hide_if_empty'] )  ? 0 : 1;
@@ -61,12 +64,13 @@ class WooCommerce_Widget_DropdownCart extends WP_Widget {
         if ( $title )
             echo $before_title . $title . $after_title;
 
-        global $woocommerce;
+        $cart_contents_count = $woocommerce->cart->get_cart_contents_count();
+
         ?>
         <div class="widget_shopping_mini_cart_content">
-            <?php if ( !$hide_if_empty || sizeof( $woocommerce->cart->get_cart() ) > 0 ) : ?>
+            <?php if ( !$hide_if_empty || $cart_contents_count > 0 ) : ?>
                 <div class="dropdown-cart-button <?php echo $hide_if_empty ? 'hide_dropdown_cart_widget_if_empty' : '' ?>" style="<?php echo $hide_if_empty && sizeof( $woocommerce->cart->get_cart() ) == 0 ? "display:none;":"" ?>">
-                    <a href="#" class="dropdown-total"><?php echo sizeof( $woocommerce->cart->get_cart()) ?> <?php _e('items(s)', 'woocommerce-ddc') ?> - <?php echo $woocommerce->cart->get_cart_subtotal(); ?></a>
+                    <a href="#" class="dropdown-total"><?php echo $cart_contents_count.' '._n(__('item', 'woocommerce-ddc'), __('items', 'woocommerce-dc'), $cart_contents_count) ?> - <?php echo $woocommerce->cart->get_cart_subtotal(); ?></a>
                     <div class="dropdown">
                         <?php woocommerce_mini_cart(); ?>
                         <div class="clear"></div>
@@ -98,6 +102,7 @@ class WooCommerce_Widget_DropdownCart extends WP_Widget {
     function update( $new_instance, $old_instance ) {
         $instance['title'] = strip_tags( stripslashes( $new_instance['title'] ) );
         $instance['hide_if_empty'] = empty( $new_instance['hide_if_empty'] ) ? 0 : 1;
+        $instance['show_on_checkout'] = empty( $new_instance['show_on_checkout'] ) ? 0 : 1;
         return $instance;
     }
 
@@ -112,12 +117,16 @@ class WooCommerce_Widget_DropdownCart extends WP_Widget {
      */
     function form( $instance ) {
         $hide_if_empty = empty( $instance['hide_if_empty'] ) ? 0 : 1;
+        $show_on_checkout = empty( $instance['show_on_checkout'] ) ? 0 : 1;
         ?>
         <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'woocommerce') ?></label>
             <input type="text" class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" value="<?php if (isset ( $instance['title'])) {echo esc_attr( $instance['title'] );} ?>" /></p>
 
         <p><input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id('hide_if_empty') ); ?>" name="<?php echo esc_attr( $this->get_field_name('hide_if_empty') ); ?>"<?php checked( $hide_if_empty ); ?> />
             <label for="<?php echo $this->get_field_id('hide_if_empty'); ?>"><?php _e( 'Hide if cart is empty', 'woocommerce' ); ?></label></p>
+
+        <p><input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id('show_on_checkout') ); ?>" name="<?php echo esc_attr( $this->get_field_name('show_on_checkout') ); ?>"<?php checked( $show_on_checkout ); ?> />
+            <label for="<?php echo $this->get_field_id('show_on_checkout'); ?>"><?php _e( 'Show this widget on cart/checkout pages', 'woocommerce' ); ?></label></p>
     <?php
     }
 

@@ -8,7 +8,7 @@
     padding: 0px 10px 0px 36px;
     margin: 0px;
     position: relative;
-    z-index: 9999;
+    z-index: 10 !important;
     overflow: visible;
     background: url('../images/cart.png') no-repeat 0px center ;
 }
@@ -19,6 +19,7 @@
     line-height: 35px;
     padding-right: 16px;
     background: url('../images/arrow_down.png') no-repeat right center transparent;
+    outline: 0;
 }
 
 .dropdown-cart-button .dropdown{
